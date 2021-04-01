@@ -6,32 +6,19 @@ import '@testing-library/jest-dom/extend-expect';
 import Download from './Download';
 
 describe('Download', () => {
-  it('"훈련 데이터셋"을 볼 수 있다.', () => {
-    const { container } = render((
-      <Download />
-    ));
-    expect(container).toHaveTextContent('훈련 데이터셋');
-  });
+  global.URL.createObjectURL = jest.fn();
 
-  it('"테스트 데이터셋"을 볼 수 있다.', () => {
-    const { container } = render((
+  it('"다운로드" 버튼을 클릭하면 파일을 다운로드 할 수 있다', () => {
+    const downloadData = jest.fn();
+
+    const { queryByText } = render((
       <Download />
     ));
 
-    expect(container).toHaveTextContent('테스트 데이터셋');
-  });
+    expect(queryByText('download')).not.toBeNull();
 
-  it('"training set"을 클릭하면 훈련 데이터셋을 내려받을 수 있다', () => {
-    const downloadTrainingSet = jest.fn();
+    fireEvent.click(queryByText('download'));
 
-    const { container } = render((
-      <Download />
-    ));
-
-    expect(container.querySelector('a')).not.toBeNull();
-
-    fireEvent(container.querySelector('a'));
-
-    expect(downloadTrainingSet()).toBeCalled();
+    expect(downloadData()).toBeCalled();
   });
 });
