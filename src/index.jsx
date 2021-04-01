@@ -2,11 +2,11 @@ import React from 'react';
 
 import ReactDOM from 'react-dom';
 
+import Download from './Download';
+
 function App() {
   return (
-    <div>
-      <h1>Hello world!</h1>
-    </div>
+    <Download />
   );
 }
 
