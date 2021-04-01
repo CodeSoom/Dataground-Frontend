@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { describe, it, expect } from 'jest';
-
 import { render } from '@testing-library/react';
 
 import Download from './Download';
