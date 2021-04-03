@@ -12,7 +12,7 @@ jest.mock('file-saver');
 describe('Download', () => {
   saveAs.mockImplementation((item) => item);
 
-  it('"DOWNLOAD" 버튼을 클릭하면 파일을 다운로드 할 수 있다', () => {
+  it('"DOWNLOAD" 버튼을 클릭하면 파일을 다운로드 할 수 있습니다.', () => {
     const { queryByText } = render((
       <Download />
     ));

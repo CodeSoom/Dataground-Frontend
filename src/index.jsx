@@ -2,12 +2,6 @@ import React from 'react';
 
 import ReactDOM from 'react-dom';
 
-import Download from './Download';
-
-function App() {
-  return (
-    <Download />
-  );
-}
+import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('app'));
