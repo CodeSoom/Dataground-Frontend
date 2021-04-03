@@ -4,7 +4,7 @@ import { saveAs } from 'file-saver';
 
 export default function Download() {
   // 임시적인 데이터
-  const blob = new Blob(['dataset'], { type: 'text/plain' });
+  const blob = new Blob(['dataset'], { type: 'text/csv' });
 
   function handleClick() {
     saveAs(blob);
