@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Download from './Download';
 import Submit from './Submit';
+import Rating from './Rating';
 
 // 서버 주소에 따라 변경 예정
 const uploadFileUrl = 'http://localhost:8000/api/uploadFile';
@@ -11,9 +12,10 @@ const uploadFileUrl = 'http://localhost:8000/api/uploadFile';
 export default function App() {
   const [state, setState] = useState({
     uploadFile: {},
+    rating: null,
   });
 
-  const { uploadFile } = state;
+  const { uploadFile, rating } = state;
 
   function handleSubmitChange(event) {
     setState({
@@ -38,6 +40,7 @@ export default function App() {
         onChange={handleSubmitChange}
         onClick={handleSubmitClick}
       />
+      <Rating rating={rating} />
     </div>
   );
 }
