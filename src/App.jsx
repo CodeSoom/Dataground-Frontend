@@ -7,15 +7,20 @@ import Submit from './Submit';
 import Rating from './Rating';
 
 // 서버 주소에 따라 변경 예정
+const downloadFileUrl = 'http://localhost:8000/download/dataset';
 const uploadFileUrl = 'http://localhost:8000/api/uploadFile';
 
 export default function App() {
   const [state, setState] = useState({
     uploadFile: {},
+    rating: null,
+  });
 
   const { uploadFile, rating } = state;
 
-  const { uploadFile } = state;
+  function handleDownloadClick() {
+    window.location.href = downloadFileUrl;
+  }
 
   function handleSubmitChange(event) {
     setState({
@@ -30,13 +35,14 @@ export default function App() {
       url: uploadFileUrl,
       method: 'post',
       data: formData,
-      data: uploadFile,
     });
   }
 
   return (
     <div>
-      <Download />
+      <Download
+        onClick={handleDownloadClick}
+      />
       <Submit
         onChange={handleSubmitChange}
         onClick={handleSubmitClick}
