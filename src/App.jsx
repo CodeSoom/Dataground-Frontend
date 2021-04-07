@@ -12,10 +12,10 @@ const uploadFileUrl = 'http://localhost:8000/api/uploadFile';
 export default function App() {
   const [state, setState] = useState({
     uploadFile: {},
+    rating: null,
+  });
 
   const { uploadFile, rating } = state;
-
-  const { uploadFile } = state;
 
   function handleSubmitChange(event) {
     setState({
@@ -30,7 +30,6 @@ export default function App() {
       url: uploadFileUrl,
       method: 'post',
       data: formData,
-      data: uploadFile,
     });
   }
 
