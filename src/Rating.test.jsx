@@ -8,7 +8,7 @@ import Rating from './Rating';
 
 describe('Rating', () => {
   context('테스트 파일이 제출되지 않았을 때', () => {
-    it('점수가 화면에 출력되지 않습니다.', () => {
+    it('"파일을 제출해 주세요."가 보입니다.', () => {
       const rating = null;
 
       const { queryByText } = render((<Rating rating={rating} />));
