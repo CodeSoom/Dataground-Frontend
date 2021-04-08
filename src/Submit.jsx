@@ -10,6 +10,7 @@ export default function Submit({ onChange, onClick }) {
           type="file"
           accept="text/csv"
           onChange={onChange}
+          name="uploadFile"
         />
       </label>
 

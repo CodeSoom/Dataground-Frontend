@@ -28,14 +28,10 @@ export default function App() {
     });
   }
 
-  async function handleSubmitClick() {
+  function handleSubmitClick() {
     const formData = new FormData();
     formData.append('uploadFile', uploadFile);
-    await axios({
-      url: uploadFileUrl,
-      method: 'post',
-      data: formData,
-    });
+    axios.post(uploadFileUrl, formData);
   }
 
   return (
