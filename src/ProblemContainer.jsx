@@ -27,11 +27,9 @@ export default function ProblemContainer() {
     rating: state.rating,
   }));
 
-  function handleDownloadClick() {
-    useCallback(() => {
-      window.location.href = downloadFileUrl;
-    }, problemTitle);
-  }
+  const handleDownloadClick = useCallback(() => {
+    window.location.href = downloadFileUrl;
+  }, [problemTitle]);
 
   function handleSubmitChange(event) {
     dispatch(setUploadFile(event.target.files[0]));
