@@ -1,3 +1,5 @@
+import { fetchProblemInfo } from './services/api';
+
 export function setProblemTitle(problemTitle) {
   return {
     type: 'setProblemTitle',
@@ -21,5 +23,17 @@ export function setRating(rating) {
   return {
     type: 'setRating',
     payload: { rating },
+  };
+}
+
+export function loadProblemInfo({ problemId }) {
+  return async (dispatch) => {
+    const {
+      problemTitle, problemDescription, rating,
+    } = await fetchProblemInfo({ problemId });
+
+    dispatch(setProblemTitle(problemTitle));
+    dispatch(setProblemDescription(problemDescription));
+    dispatch(setRating(rating));
   };
 }
