@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,7 +9,10 @@ import Submit from './Submit';
 import Rating from './Rating';
 import ProblemInfo from './ProblemInfo';
 
-import { setUploadFile } from './actions';
+import { setUploadFile, loadProblemInfo } from './actions';
+
+// 문제 번호 추후 구현 예정
+const problemId = 1;
 
 // 서버 주소에 따라 변경 예정
 const downloadFileUrl = 'http://localhost:8000/download/dataset';
@@ -40,6 +43,10 @@ export default function ProblemContainer() {
     formData.append('uploadFile', uploadFile);
     axios.post(uploadFileUrl, formData);
   }
+
+  useEffect(() => {
+    dispatch(loadProblemInfo({ problemId }));
+  }, []);
 
   return (
     <div>
