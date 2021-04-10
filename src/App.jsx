@@ -1,9 +1,16 @@
 import React from 'react';
 
-import ProblemContainer from './ProblemContainer';
+import { Switch, Route } from 'react-router-dom';
+
+import ProblemPage from './ProblemPage';
+import ProblemsPage from './ProblemsPage';
 
 export default function App() {
   return (
-    <ProblemContainer />
+    <Switch>
+      <Route exact path="/" component={ProblemsPage} />
+      <Route exact path="/problem/:id" component={ProblemPage} />
+    </Switch>
+
   );
 }
