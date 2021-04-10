@@ -2,21 +2,22 @@ import React, { useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import axios from 'axios';
-
 import Download from './Download';
 import Submit from './Submit';
 import Rating from './Rating';
 import ProblemInfo from './ProblemInfo';
 
-import { setUploadFile, loadProblemInfo } from './actions';
+import {
+  setUploadFile,
+  loadProblemInfo,
+  loadSubmitRating,
+} from './actions';
 
-// 문제 번호 추후 구현 예정
+// FIXME 임시적인 문제 ID
 const problemId = 1;
 
-// 서버 주소에 따라 변경 예정
+// FIXME 임시적인 서버 주소들
 const downloadFileUrl = 'http://localhost:8000/download/dataset';
-const uploadFileUrl = 'http://localhost:8000/api/uploadFile';
 
 export default function ProblemContainer() {
   const dispatch = useDispatch();
@@ -38,10 +39,10 @@ export default function ProblemContainer() {
     dispatch(setUploadFile(event.target.files[0]));
   }
 
-  function handleSubmitClick() {
+  async function handleSubmitClick() {
     const formData = new FormData();
     formData.append('uploadFile', uploadFile);
-    axios.post(uploadFileUrl, formData);
+    dispatch(loadSubmitRating(formData));
   }
 
   useEffect(() => {

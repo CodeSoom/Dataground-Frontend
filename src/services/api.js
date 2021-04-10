@@ -5,6 +5,12 @@ export async function fetchProblemInfo({ problemId }) {
   return data;
 }
 
-export function XXX() {
-
+export async function fetchSubmitRating(submitFile) {
+  const url = 'http://localhost:8000/api/rating';
+  const response = await fetch(url, {
+    method: 'post',
+    body: submitFile,
+  });
+  const data = response.json();
+  return data;
 }
