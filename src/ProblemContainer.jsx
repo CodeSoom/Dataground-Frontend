@@ -13,13 +13,9 @@ import {
   loadSubmitRating,
 } from './actions';
 
-// FIXME 임시적인 문제 ID
-const problemId = 1;
+export default function ProblemContainer({ problemId }) {
+  const downloadFileUrl = `http://localhost:8000/download/${problemId}`;
 
-// FIXME 임시적인 서버 주소들
-const downloadFileUrl = 'http://localhost:8000/download/dataset';
-
-export default function ProblemContainer() {
   const dispatch = useDispatch();
 
   const {
@@ -41,6 +37,7 @@ export default function ProblemContainer() {
 
   async function handleSubmitClick() {
     const formData = new FormData();
+    formData.append('problemId', problemId);
     formData.append('uploadFile', uploadFile);
     dispatch(loadSubmitRating(formData));
   }

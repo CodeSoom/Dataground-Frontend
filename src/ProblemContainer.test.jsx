@@ -43,9 +43,10 @@ describe('ProblemContainer', () => {
   });
 
   it('파일을 업로드 및 제출할 수 있습니다.', () => {
+    const problemId = 1;
     const newFile = new File(['new file'], 'dataset.csv', { type: 'text/csv' });
 
-    const { queryByLabelText, queryByText } = render((<ProblemContainer />));
+    const { queryByLabelText, queryByText } = render((<ProblemContainer problemId={problemId} />));
 
     fireEvent.change(queryByLabelText('파일 선택:'), {
       target: {
