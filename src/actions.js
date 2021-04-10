@@ -1,4 +1,7 @@
-import { fetchProblemInfo } from './services/api';
+import {
+  fetchProblemInfo,
+  fetchSubmitRating,
+} from './services/api';
 
 export function setProblemTitle(problemTitle) {
   return {
@@ -34,6 +37,13 @@ export function loadProblemInfo({ problemId }) {
 
     dispatch(setProblemTitle(problemTitle));
     dispatch(setProblemDescription(problemDescription));
+    dispatch(setRating(rating));
+  };
+}
+
+export function loadSubmitRating(submitFile) {
+  return async (dispatch) => {
+    const rating = await fetchSubmitRating(submitFile);
     dispatch(setRating(rating));
   };
 }

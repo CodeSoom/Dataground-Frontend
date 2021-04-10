@@ -4,12 +4,16 @@ import configureStore from 'redux-mock-store';
 
 import {
   loadProblemInfo,
+  loadSubmitRating,
   setProblemTitle,
   setProblemDescription,
   setRating,
 } from './actions';
 
-import { fetchProblemInfo } from './services/api';
+import {
+  fetchProblemInfo,
+  fetchSubmitRating,
+} from './services/api';
 
 jest.mock('./services/api');
 
@@ -23,16 +27,36 @@ describe('actions', () => {
     beforeEach(() => {
       store = mockStore({});
     });
-    it('해당 문제의 정보를 load 합니다.', async () => {
+    it('setProblemTitle, setProblemDescription, setRating을 실행합니다.', async () => {
       fetchProblemInfo.mockImplementation(() => ({
         problemTitle: '', problemDescription: '', rating: null,
       }));
+
       await store.dispatch(loadProblemInfo({ problemId: 1 }));
       const actions = store.getActions();
 
       expect(actions[0]).toEqual(setProblemTitle(''));
       expect(actions[1]).toEqual(setProblemDescription(''));
       expect(actions[2]).toEqual(setRating(null));
+    });
+  });
+
+  describe('loadSubmitRating', () => {
+    beforeEach(() => {
+      store = mockStore({});
+    });
+    it('setRating을 실행합니다.', async () => {
+      fetchSubmitRating.mockImplementation(() => ({
+        score: 100, incorrectPredictions: [],
+      }));
+      const submitFile = new FormData();
+
+      await store.dispatch(loadSubmitRating(submitFile));
+      const actions = store.getActions();
+
+      expect(actions[0]).toEqual(setRating({
+        score: 100, incorrectPredictions: [],
+      }));
     });
   });
 });
