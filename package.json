@@ -43,7 +43,10 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@emotion/core": "^11.0.0",
+    "@emotion/styled": "^11.3.0",
     "axios": "^0.21.1",
+    "emotion-rgba": "^0.0.9",
     "file-saver": "^2.0.5",
     "http-parser-js": "^0.5.3",
     "react": "^17.0.2",

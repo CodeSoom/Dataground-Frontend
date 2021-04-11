@@ -56,9 +56,9 @@ describe('ProblemContainer', () => {
 
     expect(dispatch).toBeCalled();
 
-    expect(queryByText('제출')).not.toBeNull();
+    expect(queryByText('제출하기')).not.toBeNull();
 
-    fireEvent.click(queryByText('제출'));
+    fireEvent.click(queryByText('제출하기'));
 
     expect(dispatch).toBeCalled();
   });
