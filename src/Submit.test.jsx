@@ -38,9 +38,9 @@ describe('Submit', () => {
       onClick={handleClick}
     />));
 
-    expect(queryByText('제출')).not.toBeNull();
+    expect(queryByText('제출하기')).not.toBeNull();
 
-    fireEvent.click(queryByText('제출'));
+    fireEvent.click(queryByText('제출하기'));
 
     expect(handleClick).toBeCalledTimes(1);
   });
