@@ -13,9 +13,9 @@ import {
 import {
   fetchProblemInfo,
   fetchSubmitRating,
-} from './services/api';
+} from '../services/api';
 
-jest.mock('./services/api');
+jest.mock('../services/api');
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);

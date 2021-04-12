@@ -1,7 +1,7 @@
 import {
   fetchProblemInfo,
   fetchSubmitRating,
-} from './services/api';
+} from '../services/api';
 
 export function setProblemTitle(problemTitle) {
   return {
