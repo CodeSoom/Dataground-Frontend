@@ -13,7 +13,7 @@ import {
   setUploadFile,
   loadProblemInfo,
   loadSubmitRating,
-} from './actions';
+} from '../redux/actions';
 
 const Container = styled.div({
   margin: '0 auto',
