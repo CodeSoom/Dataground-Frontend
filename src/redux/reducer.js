@@ -3,6 +3,7 @@ const initialState = {
   problemDescription: '',
   uploadFile: {},
   rating: null,
+  problemDifficulty: '',
 };
 
 const reducers = {
@@ -31,6 +32,13 @@ const reducers = {
     return {
       ...state,
       rating,
+    };
+  },
+
+  setProblemDifficulty(state, { payload: { problemDifficulty } }) {
+    return {
+      ...state,
+      problemDifficulty,
     };
   },
 };

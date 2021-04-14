@@ -29,6 +29,13 @@ export function setRating(rating) {
   };
 }
 
+export function setProblemDifficulty(problemDifficulty) {
+  return {
+    type: 'setProblemDifficulty',
+    payload: { problemDifficulty },
+  };
+}
+
 export function loadProblemInfo({ problemId }) {
   return async (dispatch) => {
     const {
