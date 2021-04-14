@@ -7,6 +7,7 @@ import {
   setProblemDescription,
   setRating,
   setUploadFile,
+  setProblemDifficulty,
 } from './actions';
 
 describe('reducer', () => {
@@ -16,6 +17,7 @@ describe('reducer', () => {
       problemDescription: '',
       uploadFile: {},
       rating: null,
+      problemDifficulty: '',
     };
     it('initialState를 반환합니다.', () => {
       const state = reducer(undefined, { type: 'action' });
@@ -75,6 +77,18 @@ describe('reducer', () => {
       const state = reducer(initialState, setUploadFile(file));
 
       expect(state.uploadFile).not.toBeNull();
+    });
+  });
+
+  describe('setProblemDifficulty', () => {
+    it('문제 난이도를 바꿉니다.', () => {
+      const initialState = {
+        problemDifficulty: '',
+      };
+
+      const state = reducer(initialState, setProblemDifficulty('연습중!'));
+
+      expect(state.problemDifficulty).toEqual('연습중!');
     });
   });
 });
