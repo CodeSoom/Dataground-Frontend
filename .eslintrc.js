@@ -43,5 +43,7 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': ['error', { assert: 'either' }],
     'react/prop-types': 'off',
     'linebreak-style': 'off',
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/interactive-supports-focus': 0,
   },
 };
