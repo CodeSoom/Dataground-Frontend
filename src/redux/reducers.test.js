@@ -8,6 +8,8 @@ import {
   setRating,
   setUploadFile,
   setProblemDifficulty,
+  setSelectedSubCategories,
+  setSelectedSubCategory,
 } from './actions';
 
 describe('reducer', () => {
@@ -18,6 +20,8 @@ describe('reducer', () => {
       uploadFile: {},
       rating: null,
       problemDifficulty: '',
+      selectedSubCategories: [],
+      selectedSubCategory: '',
     };
     it('initialState를 반환합니다.', () => {
       const state = reducer(undefined, { type: 'action' });
@@ -39,7 +43,7 @@ describe('reducer', () => {
   });
 
   describe('setPrblemDescription', () => {
-    it('PrblemDescription을 바꿉니다.', () => {
+    it('prblemDescription를 바꿉니다.', () => {
       const initialState = {
         problemDescription: '',
       };
@@ -89,6 +93,30 @@ describe('reducer', () => {
       const state = reducer(initialState, setProblemDifficulty('연습중!'));
 
       expect(state.problemDifficulty).toEqual('연습중!');
+    });
+  });
+
+  describe('setSelectedSubCategories', () => {
+    it('selectedSubCategories를 바꿉니다.', () => {
+      const initialState = {
+        selectedSubCategories: [],
+      };
+
+      const state = reducer(initialState, setSelectedSubCategories(['회귀']));
+
+      expect(state.selectedSubCategories).toEqual(['회귀']);
+    });
+  });
+
+  describe('setSelectedSubCategory', () => {
+    it('selectedSubCategory를 바꿉니다.', () => {
+      const initialState = {
+        selectedSubCategories: '',
+      };
+
+      const state = reducer(initialState, setSelectedSubCategory('회귀'));
+
+      expect(state.selectedSubCategory).toEqual('회귀');
     });
   });
 });

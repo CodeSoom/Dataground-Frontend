@@ -36,6 +36,20 @@ export function setProblemDifficulty(problemDifficulty) {
   };
 }
 
+export function setSelectedSubCategories(selectedSubCategories) {
+  return {
+    type: 'setSelectedSubCategories',
+    payload: { selectedSubCategories },
+  };
+}
+
+export function setSelectedSubCategory(selectedSubCategory) {
+  return {
+    type: 'setSelectedSubCategory',
+    payload: { selectedSubCategory },
+  };
+}
+
 export function loadProblemInfo({ problemId }) {
   return async (dispatch) => {
     const {
