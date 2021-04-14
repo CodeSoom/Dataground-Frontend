@@ -4,6 +4,8 @@ const initialState = {
   uploadFile: {},
   rating: null,
   problemDifficulty: '',
+  selectedSubCategories: [],
+  selectedSubCategory: '',
 };
 
 const reducers = {
@@ -41,8 +43,21 @@ const reducers = {
       problemDifficulty,
     };
   },
-};
 
+  setSelectedSubCategories(state, { payload: { selectedSubCategories } }) {
+    return {
+      ...state,
+      selectedSubCategories,
+    };
+  },
+
+  setSelectedSubCategory(state, { payload: { selectedSubCategory } }) {
+    return {
+      ...state,
+      selectedSubCategory,
+    };
+  },
+};
 function defaultReducer(state) {
   return state;
 }
