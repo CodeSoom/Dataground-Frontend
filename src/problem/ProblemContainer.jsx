@@ -54,6 +54,8 @@ export default function ProblemContainer({ problemId }) {
   }
 
   async function handleSubmitClick() {
+    if (!uploadFile.name) return;
+
     const formData = new FormData();
     formData.append('problemId', problemId);
     formData.append('uploadFile', uploadFile);

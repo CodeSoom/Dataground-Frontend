@@ -2,6 +2,7 @@ import React from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import context from 'jest-plugin-context';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -42,11 +43,11 @@ describe('ProblemContainer', () => {
     expect(queryByText(/DOWNLOAD/)).not.toBeNull();
   });
 
-  it('파일을 업로드 및 제출할 수 있습니다.', () => {
+  it('파일을 업로드 할 수 있습니다.', () => {
     const problemId = 1;
     const newFile = new File(['new file'], 'dataset.csv', { type: 'text/csv' });
 
-    const { queryByLabelText, queryByText } = render((<ProblemContainer problemId={problemId} />));
+    const { queryByLabelText } = render((<ProblemContainer problemId={problemId} />));
 
     fireEvent.change(queryByLabelText('파일 선택:'), {
       target: {
@@ -54,12 +55,39 @@ describe('ProblemContainer', () => {
       },
     });
 
-    expect(dispatch).toBeCalled();
+    expect(dispatch).toBeCalledTimes(2);
+  });
 
-    expect(queryByText('제출하기')).not.toBeNull();
+  context('업로드 된 파일이 없을 시', () => {
+    it('파일이 제출되지 않습니다.', () => {
+      const problemId = 1;
 
-    fireEvent.click(queryByText('제출하기'));
+      const { queryByText } = render((<ProblemContainer problemId={problemId} />));
 
-    expect(dispatch).toBeCalled();
+      fireEvent.click(queryByText('제출하기'));
+
+      expect(dispatch).toBeCalledTimes(1);
+    });
+  });
+
+  context('업로드 된 파일이 있을 시', () => {
+    it('파일이 제출됩니다.', () => {
+      const problemId = 1;
+      const newFile = new File(['new file'], 'dataset.csv', { type: 'text/csv' });
+
+      const { queryByLabelText, queryByText } = render((
+        <ProblemContainer problemId={problemId} />
+      ));
+
+      fireEvent.change(queryByLabelText('파일 선택:'), {
+        target: {
+          files: [newFile],
+        },
+      });
+
+      fireEvent.click(queryByText('제출하기'));
+
+      expect(dispatch).toBeCalledTimes(2);
+    });
   });
 });
