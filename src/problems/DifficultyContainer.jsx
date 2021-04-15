@@ -2,13 +2,14 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { setProblemDifficulty } from '../redux/actions';
+import { loadProblems, setProblemDifficulty } from '../redux/actions';
 
 export default function DifficultyContainer() {
   const dispatch = useDispatch();
 
   function handleClick(event) {
     dispatch(setProblemDifficulty(event.target.name));
+    dispatch(loadProblems());
   }
   return (
     <div>

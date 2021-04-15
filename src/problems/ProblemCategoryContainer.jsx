@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProblemSubCategory from './ProblemSubCategory';
 
 import {
+  loadProblems,
   setSelectedSubCategories,
   setSelectedSubCategory,
 } from '../redux/actions';
@@ -23,6 +24,7 @@ export default function ProblemCategoryContainer() {
   }
   function handleSubClick(event) {
     dispatch(setSelectedSubCategory(event.target.name));
+    dispatch(loadProblems());
   }
 
   const subCategories = useSelector((state) => state.selectedSubCategories);

@@ -3,7 +3,7 @@ import React from 'react';
 export default function ProblemSubCategory({ subCategories, onClick }) {
   return (
     <div>
-      {subCategories.length !== 0
+      {(subCategories)
         ? (
           subCategories.map((subCategory) => (
             <button

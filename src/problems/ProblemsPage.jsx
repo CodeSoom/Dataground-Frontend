@@ -1,14 +1,24 @@
 import React from 'react';
 
+import { useHistory } from 'react-router-dom';
+
 import DifficultyContainer from './DifficultyContainer';
 import ProblemCategoryContainer from './ProblemCategoryContainer';
+import ProblemListContainer from './ProblemListContainer';
 
 export default function ProblemsPage() {
+  const history = useHistory();
+
+  function handleProblemClick(problemId) {
+    const url = `/problems/${problemId}`;
+    history.push(url);
+  }
+
   return (
     <div>
-      <a href="/problem/1">1번 문제</a>
       <DifficultyContainer />
       <ProblemCategoryContainer />
+      <ProblemListContainer onClick={handleProblemClick} />
     </div>
   );
 }
