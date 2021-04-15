@@ -6,6 +6,7 @@ const initialState = {
   problemDifficulty: '',
   selectedSubCategories: [],
   selectedSubCategory: '',
+  problems: [],
 };
 
 const reducers = {
@@ -55,6 +56,13 @@ const reducers = {
     return {
       ...state,
       selectedSubCategory,
+    };
+  },
+
+  setProblems(state, { payload: { problems } }) {
+    return {
+      ...state,
+      problems,
     };
   },
 };

@@ -27,7 +27,7 @@ describe('DifficultyContainer', () => {
 
       fireEvent.click(queryByText('연습중!'));
 
-      expect(dispatch).toBeCalledTimes(1);
+      expect(dispatch).toBeCalledTimes(2);
     });
   });
 });

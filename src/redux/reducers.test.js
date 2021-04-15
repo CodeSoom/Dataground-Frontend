@@ -10,6 +10,7 @@ import {
   setProblemDifficulty,
   setSelectedSubCategories,
   setSelectedSubCategory,
+  setProblems,
 } from './actions';
 
 describe('reducer', () => {
@@ -22,6 +23,7 @@ describe('reducer', () => {
       problemDifficulty: '',
       selectedSubCategories: [],
       selectedSubCategory: '',
+      problems: [],
     };
     it('initialState를 반환합니다.', () => {
       const state = reducer(undefined, { type: 'action' });
@@ -117,6 +119,27 @@ describe('reducer', () => {
       const state = reducer(initialState, setSelectedSubCategory('회귀'));
 
       expect(state.selectedSubCategory).toEqual('회귀');
+    });
+  });
+
+  describe('setProblems', () => {
+    it('problems를 바꿉니다.', () => {
+      const newProblems = [{
+        id: 1,
+        title: '수능 성적 예측하기',
+      },
+      {
+        id: 2,
+        title: '모현 아파트값 예측하기',
+      }];
+
+      const initialState = {
+        problems: [],
+      };
+
+      const state = reducer(initialState, setProblems(newProblems));
+
+      expect(state.problems).toEqual(newProblems);
     });
   });
 });

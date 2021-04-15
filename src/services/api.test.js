@@ -1,6 +1,7 @@
 import {
   fetchProblemInfo,
   fetchSubmitRating,
+  fetchProblems,
 } from './api';
 
 describe('api', () => {
@@ -45,6 +46,28 @@ describe('api', () => {
       const fetchedSubmitRating = await fetchSubmitRating(submitFile);
 
       expect(fetchedSubmitRating).toEqual(submitRating);
+    });
+  });
+
+  describe('fetchProblems', () => {
+    const problems = {
+      problems: [{
+        id: 1,
+        title: '수능 성적 예측하기',
+      },
+      {
+        id: 2,
+        title: '모현 아파트값 예측하기',
+      }],
+    };
+    beforeEach(() => {
+      mockFetch(problems);
+    });
+
+    it('문제의 난이도와 유형에 맞는 문제들을 fetch합니다.', async () => {
+      const fetchedProblems = await fetchProblems('easy', 'regression');
+
+      expect(fetchedProblems).toEqual(problems);
     });
   });
 });

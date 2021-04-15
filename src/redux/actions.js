@@ -1,5 +1,6 @@
 import {
   fetchProblemInfo,
+  fetchProblems,
   fetchSubmitRating,
 } from '../services/api';
 
@@ -50,6 +51,13 @@ export function setSelectedSubCategory(selectedSubCategory) {
   };
 }
 
+export function setProblems(problems) {
+  return {
+    type: 'setProblems',
+    payload: { problems },
+  };
+}
+
 export function loadProblemInfo({ problemId }) {
   return async (dispatch) => {
     const {
@@ -66,5 +74,18 @@ export function loadSubmitRating(submitFile) {
   return async (dispatch) => {
     const rating = await fetchSubmitRating(submitFile);
     dispatch(setRating(rating));
+  };
+}
+
+export function loadProblems() {
+  return async (dispatch, getState) => {
+    const { problemDifficulty, selectedSubCategory } = getState();
+    if (!problemDifficulty || !selectedSubCategory) { return; }
+
+    const { problems } = await fetchProblems(
+      problemDifficulty,
+      selectedSubCategory,
+    );
+    dispatch(setProblems(problems));
   };
 }

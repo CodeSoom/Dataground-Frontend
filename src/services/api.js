@@ -14,3 +14,12 @@ export async function fetchSubmitRating(submitFile) {
   const data = response.json();
   return data;
 }
+
+export async function fetchProblems(difficulty, category) {
+  const url = `
+  http://localhost:8000/problems?difficulty=${difficulty}&category=${category}
+  `;
+  const response = await fetch(url);
+  const data = response.json();
+  return data;
+}
